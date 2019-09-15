@@ -37,7 +37,7 @@ api={
 	startHistory:function(){
 		if(o.startHistory)return;
 		o.history.push("ch");
-		o.history.root();
+		//o.history.root();
 		o.startHistory=true;
 	},
 	loadJS:function(code){
@@ -57,13 +57,13 @@ api={
 			case "jq":
 			case "jQuery":
 			case "jquery.min.js":
-				return "/static/cdn/jquery.min.js";
+				return "https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js";
 			case "bootstrap.min.css":
 				return "https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css";
 			case "bootstrap.min.js":
 				return "https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js";
 			case "template"://渲染
-				return "/static/cdn/art-template.min.js";
+				return "https://aui.github.io/art-template/js/template-engines/template-web.js";
 			default:
 				return file;
 		}
