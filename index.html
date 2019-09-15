@@ -2,7 +2,10 @@
 <html>
 <head>
 <title>CH的博客</title>
+<meta charset="utf-8">
 <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+
+
 <style>
 body{
 	background-color: #f2f2f2;
@@ -143,6 +146,9 @@ img{
 </template>
 <link href="chEngineer.css" rel="Stylesheet"/>
 <script src="chEngineer.js"></script><!--导入CH引擎（重要！！！）-->
+
+
+
 <script>
 /*单页面脚本*/
 app({
@@ -169,6 +175,7 @@ app({
 		// 		prevEl:'.swiper-button-prev',
 		// 	},
 		// });
+		api.showLoading("正在加载文章列表...");
 		api.import("template",function(){
 			api.request({
 				url:app.data.base+"list.php",
@@ -182,6 +189,10 @@ app({
 						api.bind();
 					});
 					console.log(res);
+				},fail:function(){
+					api.toast("请求出错了！");
+				},complete:function(){
+					api.hideLoading();
 				}
 			});
 		});
@@ -194,7 +205,7 @@ app({
 		}
 	},
 	onLoad:function(){//启动事件
-		app.data.base="/ybapi/chblog/";
+		app.data.base="https://yiban.glut.edu.cn/ybapi/chblog/";
 		/*
 			"https://cdn.bootcss.com/Swiper/4.5.0/css/swiper.min.css",
 			"https://cdn.bootcss.com/Swiper/4.5.0/js/swiper.min.js"
@@ -208,7 +219,7 @@ app({
 		var id=that.getAttribute("data-id");
 		api.showLoading("正在加载文章...");
 		api.request({
-			url:"/ybapi/chblog/list.php",
+			url:"https://yiban.glut.edu.cn/ybapi/chblog/list.php",
 			dataType:"json",
 			type:"POST",
 			data:"type=3&id="+id,
