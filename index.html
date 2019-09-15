@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CH的博客</title>
+<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+	background-color: #f2f2f2;
+}
+.article-body{
+	width:60%;margin:0 auto;background-color:#ffffff;
+}
+.article-time{
+	padding:20px 0;display:flex;justify-content:space-around;width:400px;margin:0 auto;
+}
+.article-item{
+	padding:25px 10%;
+}
+.article-title{
+	font-size:2rem;text-align:center;
+}
+#page2{
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	position:fixed;
+	transition:0.5s;
+	transform:translateY(100%);
+	overflow:hidden;
+}
+.button{
+	background-color: #f2f2f2;width:80px;height:50px;line-height:50px;text-align:center;border-radius:10px;
+}
+@media screen and (max-width: 800px) {/*移动端进行调整*/
+    .article-body{
+		width:98%;
+    }
+    .article-time{
+		padding:2px 0;width:100%;
+	}
+	.article-item{
+		padding:4px 4px;
+	}
+	.article-title{
+		font-size:20px;
+	}
+}
+.topbar{
+	width:300px;margin:0 auto;display:flex;justify-content:space-between;padding:20px 0;
+}
+.topbar>*{
+	border-radius:50%;width:60px;height:60px;background-color: #efefef;line-height:60px;text-align:center;
+}
+img{
+	max-width:100%;
+	height: auto;
+}
+</style>
+</head>
+<body>
+
+<!--d style="display:flex;height:50px;line-height:50px;justify-content:space-around;" id="topbar" ch-demo="顶栏">
+	<d style="">首页</d>
+	<d class="ch-ripple" ch-text="logintText" style="width:80px;background-color:#f2f2f3;text-align:center;" bindtap="login"></d>
+	<d class="ch-ripple" ch-text="registerText" style="width:80px;background-color:#f2f2f3;text-align:center;"></d>
+</d>
+<d style="height:300px;background-color:#2367f2;" data-demo="Banner滚动横幅">
+	<d class="swiper-container" style="height:100%;">
+		<d class="swiper-wrapper">
+			<d class="swiper-slide">假装是图片1</d>
+			<d class="swiper-slide">假装是图片2</d>
+		</d>
+		<d class="swiper-pagination"></d>
+		<d class="swiper-button-next"></d>
+		<d class="swiper-button-prev"></d>
+	</d>
+</d-->
+<iscroll-y>
+<d class="article-body">
+	<d style="display:flex;justify-content: center;padding-top:100px">
+		<d>
+			<d style="font-size:4rem;">CH Blog</d>
+			<d style="font-size:0.5rem;">https://yiban.glut.edu.cn/static/chblog/</d>
+		</d>
+	</d>
+	<d class="topbar">
+		<d class="ch-ripple">主页</d>
+		<d class="ch-ripple">友链</d>
+		<d class="ch-ripple">关于</d>
+	</d>
+	<d data-demo="最新文章列表" id="lastArticleList"></d>
+	<d style="background-color:#eeeeee;height:80px;padding:20px;">
+		<d>友情链接：
+			<a target="_blank" href="https://www.baidu.com/">百度</a>
+			<a target="_blank" href="https://yiban.glut.edu.cn/">桂林理工大学易班</a>
+		</d>
+		<d>
+			桂林理工大学-CH
+		</d>
+	</d>
+</d>
+</iscroll-y>
+<d id="page2"></d>
+<template id="article">
+{{each data.list i}}
+<d class="article-item ch-ripple" bindtap="openArticle" data-id="{{i[6]}}">
+	<d class="article-title">
+		【{{i[4]}}】{{i[0]}}
+	</d>
+	<d class="article-time"><d>时间：{{i[1]}}</d><d>{{i[2]}}</d><d>作者：{{i[5]}}</d></d>
+	<d style="font-size:14px;color:#464646;padding:20px 0;">
+		{{i[3]}}
+	</d>
+</d>
+{{/each}}
+</template>
+<template id="article-detail">
+<iscroll-y>
+<d class="article-body" style="min-height:100%;">
+	<d style="display:flex;justify-content: center;padding-top:100px">
+		<d>
+			<d style="font-size:4rem;">CH Blog</d>
+			<d style="font-size:0.5rem;">https://yiban.glut.edu.cn/static/chblog/</d>
+		</d>
+	</d>
+	<d class="ch-ripple button" bindtap="backToHome">返回</d>
+	<d class="article-title">{{data.detail[0]}}</d>
+	<d class="article-time"><d>时间：{{data.detail[1]}}</d><d>{{data.detail[2]}}</d><d>作者：{{data.detail[5]}}</d></d>
+	<d style="font-size:14px;color:#464646;padding:20px;">{{#data.detail[3]}}</d>
+	<d>
+		<d>评论列表：</d>
+		<d></d>
+		<d>大佬，评论一下吧：</d>
+		<d class="ch-ripple button" style="width:100px;">点我开始评论</d>
+		<d>
+			<d></d>
+			<d class="ch-ripple button">发布评论</d>
+		</d>
+	</d>
+</d>
+</iscroll-y>
+</template>
+<link href="chEngineer.css" rel="Stylesheet"/>
+<script src="chEngineer.js"></script><!--导入CH引擎（重要！！！）-->
+<script>
+/*单页面脚本*/
+app({
+	data:{
+		logintText:"登录",
+		registerText:"注册",
+		back_arr:[],
+	},
+	backToHome:function(){
+		document.getElementById("page2").style.transform="";
+		app.data.back_arr=[];
+	},
+	finish:function(){
+		// var swiper = new Swiper('.swiper-container',{/*Swiper初始化*/
+		// 	slidesPerView:1,
+		// 	spaceBetween:30,
+		// 	loop:true,
+		// 	pagination:{
+		// 		el:'.swiper-pagination',
+		// 		clickable:true,
+		// 	},
+		// 	navigation:{
+		// 		nextEl:'.swiper-button-next',
+		// 		prevEl:'.swiper-button-prev',
+		// 	},
+		// });
+		api.import("template",function(){
+			api.request({
+				url:app.data.base+"list.php",
+				dataType:"json",
+				type:"POST",
+				data:"type=1",
+				success:function(res){
+					/*请求成功！*/
+					api.template(document.getElementById("article").innerHTML,res,function(r){
+						document.getElementById("lastArticleList").innerHTML=r;
+						api.bind();
+					});
+					console.log(res);
+				}
+			});
+		});
+	},
+	onBack:function(){
+		if(app.data.back_arr.length!=0){
+			(app.data.back_arr[app.data.back_arr.length-1])();//执行数组里面的最后一个元素(最后一个元素为函数)
+			app.data.back_arr.splice(-1,1);
+			return false;
+		}
+	},
+	onLoad:function(){//启动事件
+		app.data.base="/ybapi/chblog/";
+		/*
+			"https://cdn.bootcss.com/Swiper/4.5.0/css/swiper.min.css",
+			"https://cdn.bootcss.com/Swiper/4.5.0/js/swiper.min.js"
+		*/
+		//api.import([],function(){
+		app.finish();
+		//});
+	},login:function(){
+		console.log("login");
+	},openArticle:function(event,that){
+		var id=that.getAttribute("data-id");
+		api.showLoading("正在加载文章...");
+		api.request({
+			url:"/ybapi/chblog/list.php",
+			dataType:"json",
+			type:"POST",
+			data:"type=3&id="+id,
+			success:function(res){
+				console.log(res);
+				api.startHistory();//开启单页面模式
+				app.data.back_arr.push(function(){
+					app.backToHome();
+				});
+				document.getElementById("page2").style.transform="translateX(0)";
+				api.template(document.getElementById("article-detail").innerHTML,res,function(r){
+					document.getElementById("page2").innerHTML=r;
+					api.bind();
+				});
+			},
+			complete:function(){
+				api.hideLoading();
+			}
+		});
+	}
+});
+</script>
+</body>
+</html>
