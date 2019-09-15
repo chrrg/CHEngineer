@@ -18,30 +18,30 @@ A single page framework developed with JavaScript
 
 ## 组件
 ### iscroll-x 横向弹性滚动组件
-<iscroll-x></iscroll-x>
+&lt;iscroll-x&gt;&lt;/iscroll-x&gt;
 ### iscroll-y 纵向弹性滚动组件
-<iscroll-y></iscroll-y>
+&lt;iscroll-y&gt;&lt;/iscroll-y&gt;
 ### .ch-ripple 涟漪效果组件
-<view class="ch-ripple"></view>
+&lt;view class="ch-ripple"&gt;&lt;/view&gt;
 
 ## 数据绑定
 ### 自带数据绑定，只需app.data.abc="xxx";修改变量，无需使用document.getElementById("").innerHTML="XXX"来修改。
 #### bindtap 点击事件绑定：
 <pre><code>
-  <view bindtap="click_event">点我</view><!--view标签等效于div标签-->
-  <script>
+  &lt;view bindtap="click_event"&gt;点我&lt;/view&gt;&lt;!--view标签等效于div标签--&gt;
+  &lt;script&gt;
     app({
       click_event:function(){
         console.log("点击成功！");
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 #### catchtap 防止冒泡的点击事件绑定：
 <pre><code>
-<view bindtap="click2" style="width:100px;height:300px;background-color:orange;">
-  <view catchtap="click_event" style="width:50px;height:100px;background-color:green;">点我</view><!--view标签等效于div标签-->
-  <script>
+&lt;view bindtap="click2" style="width:100px;height:300px;background-color:orange;"&gt;
+  &lt;view catchtap="click_event" style="width:50px;height:100px;background-color:green;"&gt;点我&lt;/view&gt;&lt;!--view标签等效于div标签--&gt;
+  &lt;script&gt;
     app({
       click_event:function(){
         console.log("防止冒泡点击成功！");
@@ -49,88 +49,88 @@ A single page framework developed with JavaScript
         console.log("点我成功！");
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 
 
 #### bindlongtap 长按事件绑定：
 <pre><code>
-  <view bindlongtap="click_event">点我</view><!--view标签等效于div标签-->
-  <script>
+  &lt;view bindlongtap="click_event"&gt;点我&lt;/view&gt;&lt;!--view标签等效于div标签--&gt;
+  &lt;script&gt;
     app({
       click_event:function(){
         console.log("长按成功！");
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 
 #### ch-html HTML绑定
 <pre><code>
-  <view ch-html="text1"></view>
-  <script>
+  &lt;view ch-html="text1"&gt;&lt;/view&gt;
+  &lt;script&gt;
     app({
       data:{
-        text1:"<span>文本1</span>"
+        text1:"&lt;span&gt;文本1&lt;/span&gt;"
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 #### ch-text TEXT绑定（会编码标签）
 <pre><code>
-  <view ch-text="text1"></view>
-  <script>
+  &lt;view ch-text="text1"&gt;&lt;/view&gt;
+  &lt;script&gt;
     app({
       data:{
-        text1:"<span>文本1</span>"
+        text1:"&lt;span&gt;文本1&lt;/span&gt;"
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 #### ch-text TEXT绑定（会编码标签）
 <pre><code>
-  <view ch-text="text1"></view>
-  <script>
+  &lt;view ch-text="text1"&gt;&lt;/view&gt;
+  &lt;script&gt;
     app({
       data:{
-        text1:"<span>文本1</span>"
+        text1:"&lt;span&gt;文本1&lt;/span&gt;"
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 #### ch-val input绑定
 <pre><code>
-  <input type="text" ch-val="text1"></view>
-  <script>
+  &lt;input type="text" ch-val="text1"&gt;&lt;/view&gt;
+  &lt;script&gt;
     app({
       data:{
         text1:"输入框1"
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 #### ch-watch input数据获取
 <pre><code>
-  <input type="text" ch-val="text1" ch-watch="text1"></view>
-  <script>
+  &lt;input type="text" ch-val="text1" ch-watch="text1"&gt;&lt;/view&gt;
+  &lt;script&gt;
     app({
       data:{
         text1:"输入框1"//text1会随着input的内容改变而改变
       }
     })
-  </script>
+  &lt;/script&gt;
 </code></pre>
 
 
 
 # HTML例子代码如下：
 <pre><code>
-<view bindtap="click1" ch-html="button1"></view>
+&lt;view bindtap="click1" ch-html="button1"&gt;&lt;/view&gt;
 </code></pre>
 # JS例子如下：
 
 <pre><code>
-<script>
+&lt;script&gt;
 app({
   data:{
     button1:"点我"
@@ -149,7 +149,7 @@ app({
   },
 })
 
-</script>
+&lt;/script&gt;
 </pre></code>
 
 
