@@ -69,7 +69,7 @@ page{
 	pointer-events:none;
 }
 .loading>div{
-	background-image:url('/static/in/img/loading.gif');
+	background-image:url('https://yiban.glut.edu.cn/static/in/img/loading.gif');
     background-repeat: no-repeat;
     position: relative;
     top:20%;
