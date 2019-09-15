@@ -4,7 +4,7 @@ A single page framework developed with JavaScript
 ## 使用以下代码即可引入：
 <pre><code>
 
-<link rel="stylesheet" href="chEngineer.css">
+&lt;link rel="stylesheet" href="chEngineer.css"&gt;
 <script src="chEngineer.js"></script><!--导入CH引擎（重要！！！）-->
 
 </pre></code>
