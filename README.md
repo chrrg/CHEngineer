@@ -3,10 +3,8 @@ A single page framework developed with JavaScript
 # 特点：
 ## 使用以下代码即可引入：
 <pre><code>
-
 &lt;link rel="stylesheet" href="chEngineer.css"&gt;
-<script src="chEngineer.js"></script><!--导入CH引擎（重要！！！）-->
-
+&lt;script src="chEngineer.js"&gt;&lt;/script&gt;
 </pre></code>
 
 ## 引入两个文件就可以快速创建一个单页面网站。
